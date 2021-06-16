@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import axios from 'axios'
 // const var1 = 'test'
 // const var2 = 'test'
@@ -20,15 +20,20 @@ import axios from 'axios'
 //   return <button {...props} />
 // }
 
-const filter = (users, query) => users.filter(users =>users.name.toLowerCase().includes(query))
+const filter = (users, query) => {
+  console.log('----- FILTER -----')
+  return users.filter(users =>users.name.toLowerCase().includes(query))
+}
+
 
 const UserList = ({users, query}) => {
-  const filtered = filter(users, query)
+  const filtered = useMemo(() => filter(users, query), [users, query])
 
   return filtered.map(users => <div key={users.id}>{users.name}</div>)
 }
 
 function App() {
+  const [count, setCount] = useState(0)
   const [query, setQuery] = useState()
   const [users, setUsers] = useState([])
 
@@ -49,11 +54,11 @@ const getUsers = useCallback(async() => {
   return (
     <div className="App">
       <h1>useCallback vs useMemo</h1>
-
+      {count}
       <input type="text" onChange={ev => setQuery(ev.target.value)} />
+      <button onClick={() => setCount(prev => prev+1)}>Increment</button>
       <UserList users={users} query={query} />
       {/* <Button onClick={useCallback(() => setCount(prev => prev+1), [])}>Botao</Button> */}
-      {/* <button onClick={() => setCount(prev => prev+1)}>Increment</button> */}
     </div>
   );
 }
