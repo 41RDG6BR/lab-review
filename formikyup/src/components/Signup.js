@@ -3,9 +3,23 @@ import { Formik, Form } from 'formik'
 
 const Signup = () => {
     return (
-        <Formik>
+        <Formik
+            initialValues={{
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+            }}
+        >
             {formik => {
-                console.log(formik)
+                <div>
+                    <h1>Sign Up</h1>
+                    {console.log(formik)}
+                    <Form>
+                        
+                    </Form>
+                </div>
             }}
         </Formik>
     )
