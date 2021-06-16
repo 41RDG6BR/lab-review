@@ -27,6 +27,7 @@ const filter = (users, query) => {
 
 
 const UserList = ({users, query}) => {
+  //useMemo => NA HORA DA CHAMADA DO FILTER CHAMA A FUNCAO E PASSA COMO PARAMETRO DE DEPENDECIA PARA QUE QUANDO MUDAR O USER OU A QUERY EXECUTE O FILTER NOVAMENTE
   const filtered = useMemo(() => filter(users, query), [users, query])
 
   return filtered.map(users => <div key={users.id}>{users.name}</div>)
@@ -64,3 +65,7 @@ const getUsers = useCallback(async() => {
 }
 
 export default App;
+
+//Equivalência
+//useCallback(fn, deps)
+//useMemo(() => fn, deps)
