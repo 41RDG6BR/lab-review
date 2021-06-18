@@ -1,9 +1,8 @@
 
-import { useFormik } from 'formik'
+import { Formik } from 'formik'
 import * as Yup from 'yup'
 
 const initialValues = {
-    //correspond to the name attribute in the individual fields
     name: '',
     email: '',
     channel: ''
@@ -22,20 +21,12 @@ const validationSchema = Yup.object({
 })
 
 function OldYoutubeForm() {
-
-   const formik = useFormik({
-       initialValues,
-       onSubmit,
-       validationSchema
-   })
-
-    //console.log('Form values', formik.values)
-    // console.log('Form errors', formik.errors)
-    console.log('Visited fields', formik.touched)
-
     return (
-      <div>
-        <form onSubmit={formik.handleSubmit}>
+      <Formik>
+        <form 
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}>
             <div className='form-control'>
                 <label htmlFor='name'>Name</label>
                 <input 
@@ -77,11 +68,8 @@ function OldYoutubeForm() {
 
             <button type='submit'>Submit</button>
         </form>
-      </div>
+      </Formik>
     );
   }
   
   export default OldYoutubeForm;
-//   onChange={formik.handleChange} 
-//   onBlur={formik.handleBlur}
-//   value={formik.values.email}
