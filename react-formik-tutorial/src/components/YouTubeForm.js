@@ -45,7 +45,8 @@ function YouTubeForm() {
    })
 
     //console.log('Form values', formik.values)
-    console.log('Form errors', formik.errors)
+    // console.log('Form errors', formik.errors)
+    console.log('Visited fields', formik.touched)
 
     return (
       <div>
@@ -57,8 +58,9 @@ function YouTubeForm() {
                     id='name' 
                     name='name' 
                     onChange={formik.handleChange} 
+                    onBlur={formik.handleBlur}
                     value={formik.values.name} 
-                    />
+                />
                 {formik.errors.name ? ( 
                     <div className='error'>{formik.errors.name}</div>
                 ) : null}
@@ -71,8 +73,9 @@ function YouTubeForm() {
                     id='email' 
                     name='email' 
                     onChange={formik.handleChange} 
+                    onBlur={formik.handleBlur}
                     value={formik.values.email}
-                    />
+                />
                 {formik.errors.email ? (
                     <div className='error'>{formik.errors.email}</div>
                 ) : null}
@@ -85,8 +88,9 @@ function YouTubeForm() {
                     id='channel' 
                     name='channel' 
                     onChange={formik.handleChange} 
+                    onBlur={formik.handleBlur}
                     value={formik.values.channel}
-                    />
+                />
                 {formik.errors.channel ?(
                     <div className='error'>{formik.errors.channel}</div>
                 ) : null}
