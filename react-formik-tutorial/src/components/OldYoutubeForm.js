@@ -1,5 +1,5 @@
 
-import { Formik } from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
 const initialValues = {
@@ -22,11 +22,12 @@ const validationSchema = Yup.object({
 
 function OldYoutubeForm() {
     return (
-      <Formik>
-        <form 
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        <Form>
             <div className='form-control'>
                 <label htmlFor='name'>Name</label>
                 <input 
@@ -67,7 +68,7 @@ function OldYoutubeForm() {
             </div>
 
             <button type='submit'>Submit</button>
-        </form>
+        </Form>
       </Formik>
     );
   }
