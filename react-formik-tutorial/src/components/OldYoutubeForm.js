@@ -35,6 +35,8 @@ function OldYoutubeForm() {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
+        validationOnChange={false}
+        validationOnBlur={false}
       >
         <Form>
             <div className='form-control'>
@@ -55,7 +57,6 @@ function OldYoutubeForm() {
                     name='email' 
                 />
                 <ErrorMessage name='email'>
-                    {/*render props pattern*/}
                     {errorMsg => <div className='error'>{errorMsg}</div>}
                 </ErrorMessage>    
             </div>
@@ -76,23 +77,24 @@ function OldYoutubeForm() {
             </div>
 
             <div className='form-control'>
-                <label htmlFor='address'>Address</label>
-                <FastField name='address'>
-                    {console.log('Field render')}
-                    {
-                        (props) => {
-                            const { field, form, meta } = props
-                            // console.log('Render props', props)
-                            return (
-                                <div>
-                                 {meta.touched && meta.error ? <div>{meta.error}</div> : null}
-                                 <input type='text' id='address' {...field} />
-                                </div>
-                            )
-                        }
-                    }
-                </FastField>
+             <label>Address</label>
+             <FastField name='address'>
+                 {
+                     (props) => {
+                         console.log('Field render')
+                         const { field, meta } = props
+                         console.log('Render props', props)
+                        return (
+                            <div>
+                                <input type='text' id='address' {...field} />
+                                {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+                            </div>
+                        )
+                     }
+                 }
+             </FastField>
             </div>
+
             <div className='form-control'>
              <label htmlFor='twitter'>twitter profile</label>
              <Field text='text' id='twitter' name='social.twitter' />
@@ -122,8 +124,8 @@ function OldYoutubeForm() {
                         const {push, remove, form} = fieldArrayProps
                         const { values } = form
                         const { phNumbers } = values
-                                               
-                        return <div>
+                        console.log('Form errors', form.errors)
+                        return (<div>
                             {phNumbers.map((phNumber, index) => (
                                 <div key={index}>
                                     <Field name={`phNumbers[${index}]`} />
@@ -139,7 +141,7 @@ function OldYoutubeForm() {
                                         </button>
                                 </div>
                             ))}
-                        </div>
+                        </div>)
                      }
                  }
              </FieldArray>
