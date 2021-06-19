@@ -1,5 +1,5 @@
 
-import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik'
+import { Formik, Form, Field, ErrorMessage, FieldArray, FastField } from 'formik'
 import * as Yup from 'yup'
 import TextError from './TextError'
 
@@ -14,7 +14,7 @@ const initialValues = {
         twitter: ''
     },
     phoneNumber: ['', ''],
-    phNumbers: ['4146464', '54654646', '16554646']
+    phNumbers: ['']
 }
 
 const onSubmit = (values) => {
@@ -77,7 +77,8 @@ function OldYoutubeForm() {
 
             <div className='form-control'>
                 <label htmlFor='address'>Address</label>
-                <Field name='address'>
+                <FastField name='address'>
+                    {console.log('Field render')}
                     {
                         (props) => {
                             const { field, form, meta } = props
@@ -90,7 +91,7 @@ function OldYoutubeForm() {
                             )
                         }
                     }
-                </Field>
+                </FastField>
             </div>
             <div className='form-control'>
              <label htmlFor='twitter'>twitter profile</label>
