@@ -8,7 +8,11 @@ const initialValues = {
     email: '',
     channel: '',
     comments: '',
-    address: ''
+    address: '',
+    social: {
+        facebook: '',
+        twitter: ''
+    }
 }
 
 const onSubmit = (values) => {
@@ -86,6 +90,16 @@ function OldYoutubeForm() {
                     }
                 </Field>
             </div>
+            <div className='form-control'>
+             <label htmlFor='twitter'>twitter profile</label>
+             <Field text='text' id='twitter' name='social.twitter' />
+            </div>
+
+            <div className='form-control'>
+             <label htmlFor='facebook'>facebook profile</label>
+             <Field text='text' id='facebook' name='social.facebook' />
+            </div>
+
 
             <button type='submit'>Submit</button>
         </Form>
