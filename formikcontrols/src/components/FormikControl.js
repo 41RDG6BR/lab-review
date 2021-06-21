@@ -1,11 +1,12 @@
 import React from 'react'
+import Input from './Input'
 
 function FormikControl(props) {
 
-    const{ control } = props
+    const{ control, ...rest } = props
 
     switch(control) {
-        case 'input':
+        case 'input': return <Input {...rest} />
         case 'textarea':
         case 'select':
         case 'radio':
@@ -13,12 +14,6 @@ function FormikControl(props) {
         case 'date':
         default: return null
     }
-
-    return (
-        <div>
-            
-        </div>
-    )
 }
 
 export default FormikControl
