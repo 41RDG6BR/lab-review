@@ -10,7 +10,8 @@ function DatePicker(props) {
         <div className='form-control'>
             <label htmlFor={name}>{label}</label>
             <Field>
-                {({form, field}) => {
+                {
+                    ({form, field}) => {
                     const { setFieldValue } = form
                     const { value } = field
                     return (
@@ -21,7 +22,8 @@ function DatePicker(props) {
                             selected={value} 
                             onChange={val => setFieldValue(name, val)}
                         />
-                )}}
+                    )}
+                }
             </Field>
             <ErrorMessage name={name} component={TextError} />
         </div>
