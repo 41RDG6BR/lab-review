@@ -12,23 +12,31 @@ function FormikContainer() {
     ]
 
     const radioOptions = [
-        { key :'Option 1', value: 'option1'},
-        { key :'Option 2', value: 'option2'},
-        { key :'Option 3', value: 'option3'},
+        { key :'Option 1', value: 'roption1'},
+        { key :'Option 2', value: 'roption2'},
+        { key :'Option 3', value: 'roption3'},
+    ]
+
+    const checkboxOptions = [
+        { key :'Option 1', value: 'coption1'},
+        { key :'Option 2', value: 'coption2'},
+        { key :'Option 3', value: 'coption3'},
     ]
 
     const initialValues = {
         email: '',
         description: '',
         selectOption: '',
-        radioOptions: ''
+        radioOptions: '',
+        checkboxOptions: []
     }
 
     const validationSchema = Yup.object({
         email: Yup.string().required('Required'),
         description: Yup.string().required('Required'),
         selectOption: Yup.string().required('Required'),
-        radioOption: Yup.string().required('Required')
+        radioOption: Yup.string().required('Required'),
+        checkboxOptions: Yup.string().required('Required')
     })
 
     const onSubmit = values => console.log('Form data', values)
@@ -64,6 +72,13 @@ function FormikContainer() {
                         label='Radio topic'
                         name='radioOption'
                         options={radioOptions} 
+                    />
+
+                    <FormikControl 
+                        control='checkbox' 
+                        label='Checkbox topics'
+                        name='checkboxOption'
+                        options={checkboxOptions} 
                     />
                     
                     <button type='submit'>Submit</button>
